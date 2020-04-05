@@ -1,0 +1,3 @@
+[submodule "src/PiUI-basic"]
+	path = src/PiUI-basic
+	url = https://github.com/LanJamRom/PiUi-basic.git
