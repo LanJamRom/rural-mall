@@ -1,0 +1,9 @@
+dist/
+unpackage/dist
+unpackage/debug
+.temp/
+.rn_temp/
+node_modules/
+.DS_Store
+.history/
+
