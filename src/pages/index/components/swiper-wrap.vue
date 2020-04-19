@@ -109,11 +109,12 @@ export default {
 
   .sign {
     position: absolute;
-    top: 0;
+    top: 3rpx;
     left: 50%;
-    font-size: 12rpx;
+    font-size: 24rpx;
     line-height: 36rpx;
     color: #ffffff;
+    transform: translate(-50%, -50%);
     transform: translateX(-50%);
   }
 }
