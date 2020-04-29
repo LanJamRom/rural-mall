@@ -32,8 +32,7 @@ export const saveUserAccount = async account => {
 }
 
 /**
- * 保存用户信息到本地存储中
- * @param {Object} user 用户信息
+ * 获取用户信息
  */
 export const getUserInfo = () => {
   const user = uni.getStorageSync(USER_INFO)

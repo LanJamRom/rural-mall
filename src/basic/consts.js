@@ -7,11 +7,11 @@ export default {
   // WEBVIEW_HOST: 'http://visit.sadais.com', // webview host
   // FILE_HOST: 'http://m.sadais.com/visitor/iphone/', // file host
   INDEX_PATH: 'src/pages/index/index', // 主页入口（项目如果配置不一致，需要覆盖）
-  LOGIN_PATH: '/basic/pages/login-guide/index',
-  // TOKEN_API: '/api/user/account/v1/login/getaccesstoken',
+  LOGIN_PATH: 'src/pages/login-guide/index',
+  TOKEN_API: '/rural/v1/getAccessToken',
   // TOKEN_KEY: 'tokenid', // 设置header token key
   TOKEN_EXCEPTION_PROCESS: true, // 使用通用逻辑处理TOKEN异常，需要自定义处理则设置成false
-  TOKEN_INVALID_CODE: [1], // 接口返回码如果是1 则表明token过期或无效 需要自动刷新token
+  TOKEN_INVALID_CODE: [2, 3], // 接口返回码如果是1 则表明token过期或无效 需要自动刷新token
   TOKEN_WHITE_LIST: [], // 不需要设置token的白名单
   API_AUTH: true, // 如果服务器开启了AUTH验证，没有开启则设置空
   // ENCRPY_KEY: [119, 242, 211, 219, 137, 201, 138, 145, 65, 222, 145, 171, 213, 17, 129, 200], // 加密秘钥

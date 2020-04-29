@@ -84,6 +84,93 @@
       "style": {
         "navigationBarTitleText": "购物车"
       }
+    },
+    {
+      "path": "src/pages/login-guide/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "app-plus": {
+          "titleNView": false,
+          "animationType": "slide-in-bottom"
+        }
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "src/pages/my",
+      "pages": [
+        {
+          "path": "setting/index",
+          "style": {
+            "navigationBarTitleText": "设置"
+          }
+        },
+        {
+          "path": "shipping/index",
+          "style": {
+            "navigationBarTitleText": "地址管理"
+          }
+        },
+        {
+          "path": "shipping/edit",
+          "style": {
+            "navigationBarTitleText": "地址编辑"
+          }
+        }
+      ]
+    },
+    {
+      "root": "src/pages/product",
+      "pages": [
+        {
+          "path": "detail/index",
+          "style": {
+            "navigationBarTitleText": "详情展示",
+            "app-plus": {
+              "titleNView": {
+                "type": "transparent"
+              }
+            }
+          }
+        },
+        {
+          "path": "list/index",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        }
+      ]
+    },
+    {
+      "root": "src/pages/order",
+      "pages": [
+        {
+          "path": "create/index",
+          "style": {
+            "navigationBarTitleText": "创建订单"
+          }
+        },
+        {
+          "path": "list/index",
+          "style": {
+            "navigationBarTitleText": "订单列表"
+          }
+        },
+        {
+          "path": "create/pay/pay",
+          "style": {
+            "navigationBarTitleText": "支付"
+          }
+        },
+        {
+          "path": "create/pay/paySuccess",
+          "style": {
+            "navigationBarTitleText": "支付成功"
+          }
+        }
+      ]
     }
   ],
   "globalStyle": {

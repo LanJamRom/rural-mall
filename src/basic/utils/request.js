@@ -1,5 +1,5 @@
 import consts from '@/src/consts.js'
-import { getTokenid } from './user'
+import { getTokenid, getUserAccount, reLaunchToLogin, saveTokenid } from './user'
 
 /**
  * 通用uni-app网络请求
@@ -74,30 +74,30 @@ export default {
     })
     return data
   },
-  // async refreshTokenIfNeed(response) {
-  //   if (response && response.data && response.data.head && consts.TOKEN_INVALID_CODE.includes(response.data.head.ret)) {
-  //     // 账号还没登录的情况下，跳转登录
-  //     const account = getUserAccount()
-  //     if (!account || !currentTokenRetry) {
-  //       reLaunchToLogin()
-  //       return response
-  //     }
-  //     currentTokenRetry--
-  //     // token过期或没有传token了
-  //     const data = await this.apiGetToken(account)
-  //     if (data && data.head && data.head.ret === 0) {
-  //       currentTokenRetry = RETRY_TOKEN_TIME // 重置token重试次数
-  //       // 刷新token成功 保存token
-  //       const accessToken = data.data && data.data.accesstoken
-  //       saveTokenid(accessToken)
-  //       console.log('保存token: ', accessToken)
-  //       // 重新发起请求
-  //       const newResponse = await this.request(response.config)
-  //       return newResponse
-  //     }
-  //   }
-  //   return response
-  // },
+  async refreshTokenIfNeed(response) {
+    if (response && response.data && response.data.head && consts.TOKEN_INVALID_CODE.includes(response.data.head.ret)) {
+      // 账号还没登录的情况下，跳转登录
+      const account = getUserAccount()
+      if (!account || !currentTokenRetry) {
+        reLaunchToLogin()
+        return response
+      }
+      currentTokenRetry--
+      // token过期或没有传token了
+      const data = await this.apiGetToken(account)
+      if (data && data.head && data.head.ret === 0) {
+        currentTokenRetry = RETRY_TOKEN_TIME // 重置token重试次数
+        // 刷新token成功 保存token
+        const accessToken = data.data && data.data.accesstoken
+        saveTokenid(accessToken)
+        console.log('保存token: ', accessToken)
+        // 重新发起请求
+        const newResponse = await this.request(response.config)
+        return newResponse
+      }
+    }
+    return response
+  },
   request(options) {
     // 初始化options
     if (!options) {
@@ -136,9 +136,17 @@ export default {
     }
     // 设置Authorization
     if (consts.API_AUTH && !consts.TOKEN_WHITE_LIST.includes[requestUrl]) {
-      options.header.Authorization = 'Bearer' + getTokenid()
+      options.header.Authorization = `Bearer ${getTokenid()}`
     }
 
+    // 数据签名
+    // const tokenid = getTokenid()
+    // if (!consts.TOKEN_WHITE_LIST.includes[requestUrl] && tokenid) {
+    //   const token = {
+    //     [consts.TOKEN_KEY]: tokenid
+    //   }
+    //   options.header = Object.assign({}, options.header, token)
+    // }
     return new Promise((resolve, reject) => {
       let _config = null
 
@@ -146,9 +154,9 @@ export default {
         const statusCode = response.statusCode
         response.config = _config
         // token过期处理
-        // if (consts.TOKEN_EXCEPTION_PROCESS) {
-        //   response = await this.refreshTokenIfNeed(response)
-        // }
+        if (consts.TOKEN_EXCEPTION_PROCESS) {
+          response = await this.refreshTokenIfNeed(response)
+        }
 
         if (this.interceptor.response) {
           const newResponse = await this.interceptor.response(response)
