@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "git-cz": "^3.3.0",
     "prettier": "^1.19.1",
-    "stylelint": "^12.0.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-order": "^3.1.1",
